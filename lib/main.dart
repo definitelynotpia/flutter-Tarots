@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import './tarotcontent.dart';
+import 'cardstates.dart';
 
 void main() {
   runApp(const MainApp());
@@ -32,37 +33,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _isFlipped = false;
-  int _timesFlipped = 0;
-  String _cardTitle = "";
-  //String _cardMeaning = ""; - add later
-  // color
-  Color _cardColor = Colors.purple;
-  Color _cardTitleColor = Colors.black;
+  // initialize tarot card states as a nested hashmap
+  final Map<int, Map> _cardStates = cardstates;
 
-  void _getCard(){
+  // tarot card randomizer
+  void _getCard(index) {
     int cardnum = Random().nextInt(tarotdeck.length);
-    _cardTitle = tarotdeck[cardnum]['title'];
+    // set card title and meaning
+    _cardStates[index]?["cardTitle"] = tarotdeck[cardnum]['title'];
+    _cardStates[index]?["cardSubtitle"] = tarotdeck[cardnum]['meaning'];
   }
 
-  void _flipCard(context) {
+  // flip card on tap
+  void _flipCard(index, context) {
+    bool isFlipped = _cardStates[index]?["isFlipped"];
     setState(() {
-      _timesFlipped++;
-      if (_isFlipped) {
+      if (isFlipped) {
         // change card design
-        _cardColor = Theme.of(context).colorScheme.onPrimary;
-        _cardTitleColor = Theme.of(context).colorScheme.primary;
-        _cardTitle = "Goodbye!";
+        _cardStates[index]?["cardColor"] =
+            Theme.of(context).colorScheme.onPrimary;
+        _cardStates[index]?["cardTitleColor"] =
+            Theme.of(context).colorScheme.primary;
+        _cardStates[index]?["cardTitle"] = "Click me!";
+        _cardStates[index]?["cardSubtitle"] = "";
         // set card state
-        _isFlipped = false;
-      } else if (!_isFlipped) {
+        _cardStates[index]?["isFlipped"] = false;
+      } else if (!isFlipped) {
         // change card design
-        _cardColor = Theme.of(context).colorScheme.secondaryContainer;
-        _cardTitleColor = Theme.of(context).colorScheme.onPrimaryContainer;
-        _getCard();
-        //_cardTitle = "Hello!";
+        _cardStates[index]?["cardColor"] =
+            Theme.of(context).colorScheme.secondaryContainer;
+        _cardStates[index]?["cardTitleColor"] =
+            Theme.of(context).colorScheme.onPrimaryContainer;
+        _getCard(index);
         // set card state
-        _isFlipped = true;
+        _cardStates[index]?["isFlipped"] = true;
       }
     });
   }
@@ -70,6 +74,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // set gradient background
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -83,43 +88,67 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       child: Scaffold(
+        // set transparent background to show gradient
         backgroundColor: Colors.transparent,
+        // display app name at header
         appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
             title: Text(
               widget.title,
               style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
             )),
+        // Center all children
         body: Center(
-          child: Card(
-            color: _cardColor,
-            elevation: 20,
-            margin: const EdgeInsets.all(12),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Click the button to flip the card.",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  Text(
-                    _cardTitle,
-                    style: TextStyle(
-                      color: _cardTitleColor,
-                      fontSize: 70,
-                    ),
-                  ),
-                  Text(
-                    '$_timesFlipped',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ]),
+          child: Container(
+            constraints: BoxConstraints(
+              minWidth: MediaQuery.sizeOf(context).width/1.5,
+              maxWidth: MediaQuery.sizeOf(context).width/1.5,
+            ),
+            child: GridView.builder(
+              physics:
+                  const NeverScrollableScrollPhysics(), // prevent scrolling
+              shrinkWrap: true, // allow GridView to center vertically
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5, // rows
+                // mainAxisSpacing: 40,
+                // crossAxisSpacing: 10, // space between
+                childAspectRatio: (250 / 400), // width and height
+              ),
+              itemCount: 5, // how many items to build with itemBuilder
+              itemBuilder: (context, index) =>
+                  // make card clickable
+                  GestureDetector(
+                // flip card on tap
+                onTap: () => _flipCard(index, context),
+                // card container
+                child: Card(
+                  color: _cardStates[index]?["cardColor"],
+                  elevation: 20,
+                  margin: const EdgeInsets.all(12),
+                  // card body
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        // card title
+                        Text(
+                          _cardStates[index]?["cardTitle"],
+                          style: TextStyle(
+                            color: _cardStates[index]?["cardTitleColor"],
+                            fontSize: 25,
+                          ),
+                        ),
+                        Text(
+                          _cardStates[index]?["cardSubtitle"],
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _flipCard(context),
-          tooltip: "Flip the card!",
-          child: const Icon(Icons.rotate_90_degrees_cw),
         ),
       ),
     );
