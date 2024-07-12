@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+import './tarotcontent.dart';
 
 void main() {
   runApp(const MainApp());
@@ -33,9 +35,15 @@ class _HomePageState extends State<HomePage> {
   bool _isFlipped = false;
   int _timesFlipped = 0;
   String _cardTitle = "";
+  //String _cardMeaning = ""; - add later
   // color
   Color _cardColor = Colors.purple;
   Color _cardTitleColor = Colors.black;
+
+  void _getCard(){
+    int cardnum = Random().nextInt(tarotdeck.length);
+    _cardTitle = tarotdeck[cardnum]['title'];
+  }
 
   void _flipCard(context) {
     setState(() {
@@ -51,7 +59,8 @@ class _HomePageState extends State<HomePage> {
         // change card design
         _cardColor = Theme.of(context).colorScheme.secondaryContainer;
         _cardTitleColor = Theme.of(context).colorScheme.onPrimaryContainer;
-        _cardTitle = "Hello!";
+        _getCard();
+        //_cardTitle = "Hello!";
         // set card state
         _isFlipped = true;
       }
