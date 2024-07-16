@@ -39,9 +39,12 @@ class _HomePageState extends State<HomePage> {
   // tarot card randomizer
   void _getCard(index) {
     int cardnum = Random().nextInt(tarotdeck.length);
-    // set card title and meaning
-    _cardStates[index]?["cardTitle"] = tarotdeck[cardnum]['title'];
-    _cardStates[index]?["cardSubtitle"] = tarotdeck[cardnum]['meaning'];
+    if (_cardStates[index]?["flipCount"] == 0) {
+      // set card title and meaning
+      _cardStates[index]?["cardTitle"] = tarotdeck[cardnum]['title'];
+      _cardStates[index]?["cardSubtitle"] = tarotdeck[cardnum]['meaning'];
+      _cardStates[index]?["cardImage"] = tarotdeck[cardnum]['image'];
+    }
   }
 
   // flip card on tap
@@ -51,22 +54,23 @@ class _HomePageState extends State<HomePage> {
       if (isFlipped) {
         // change card design
         _cardStates[index]?["cardColor"] =
-            Theme.of(context).colorScheme.onPrimary;
-        _cardStates[index]?["cardTitleColor"] =
-            Theme.of(context).colorScheme.primary;
-        _cardStates[index]?["cardTitle"] = "Click me!";
-        _cardStates[index]?["cardSubtitle"] = "";
-        // set card state
-        _cardStates[index]?["isFlipped"] = false;
-      } else if (!isFlipped) {
-        // change card design
-        _cardStates[index]?["cardColor"] =
             Theme.of(context).colorScheme.secondaryContainer;
         _cardStates[index]?["cardTitleColor"] =
             Theme.of(context).colorScheme.onPrimaryContainer;
+        // set card state
+        _cardStates[index]?["isFlipped"] = false;
+        _cardStates[index]?["flipCount"] == _cardStates[index]?["flipCount"]++;
+      } else if (!isFlipped) {
+        // change card design
+        _cardStates[index]?["cardColor"] =
+            Theme.of(context).colorScheme.onPrimary;
+        _cardStates[index]?["cardTitleColor"] =
+            Theme.of(context).colorScheme.primary;
+        // change text
         _getCard(index);
         // set card state
         _cardStates[index]?["isFlipped"] = true;
+        _cardStates[index]?["flipCount"] == _cardStates[index]?["flipCount"]++;
       }
     });
   }
@@ -101,8 +105,8 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child: Container(
             constraints: BoxConstraints(
-              minWidth: MediaQuery.sizeOf(context).width/1.5,
-              maxWidth: MediaQuery.sizeOf(context).width/1.5,
+              minWidth: MediaQuery.sizeOf(context).width,
+              maxWidth: MediaQuery.sizeOf(context).width,
             ),
             child: GridView.builder(
               physics:
@@ -110,9 +114,7 @@ class _HomePageState extends State<HomePage> {
               shrinkWrap: true, // allow GridView to center vertically
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 5, // rows
-                // mainAxisSpacing: 40,
-                // crossAxisSpacing: 10, // space between
-                childAspectRatio: (250 / 400), // width and height
+                childAspectRatio: (250 / 420), // width and height
               ),
               itemCount: 5, // how many items to build with itemBuilder
               itemBuilder: (context, index) =>
@@ -126,25 +128,44 @@ class _HomePageState extends State<HomePage> {
                   elevation: 20,
                   margin: const EdgeInsets.all(12),
                   // card body
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        // card title
-                        Text(
-                          _cardStates[index]?["cardTitle"],
-                          style: TextStyle(
-                            color: _cardStates[index]?["cardTitleColor"],
-                            fontSize: 25,
-                          ),
-                        ),
-                        Text(
-                          _cardStates[index]?["cardSubtitle"],
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ]),
+                  child: Builder(
+                    builder: (context) {
+                      if (_cardStates[index]?["isFlipped"]) {
+                        // show tarot image
+                        return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              // card title
+                              Text(
+                                _cardStates[index]?["cardTitle"],
+                                style: TextStyle(
+                                  color: _cardStates[index]?["cardTitleColor"],
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width / 80,
+                                ),
+                              ),
+                              Image.network(_cardStates[index]?["cardImage"]),
+                              Text(
+                                _cardStates[index]!["flipCount"].toString(),
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width / 120,
+                                ),
+                              ),
+                            ]);
+                      } else {
+                        // show tarot back design
+                        return const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image(
+                                  image: AssetImage("assets/tarot_back.png")),
+                            ]);
+                      }
+                    },
+                  ),
                 ),
               ),
             ),

@@ -143,39 +143,124 @@ const List tarotdeck = [
         "https://upload.wikimedia.org/wikipedia/commons/8/84/Pictorial_Key_to_the_Tarot_11_Justice.jpg",
     "meaning": "Justice Reversed Meaning"
   },
-  {'title': "The Hanged Man – XII", "meaning": "The Hanged Man Meaning"},
   {
-    'title': "The Hanged Man Reversed – XII",
+    "title": "The Hanged Man – XII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/8/80/Pictorial_Key_to_the_Tarot_12_The_Hanged_Man.jpg",
+    "meaning": "The Hanged Man Meaning"
+  },
+  {
+    "title": "The Hanged Man Reversed – XII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/8/80/Pictorial_Key_to_the_Tarot_12_The_Hanged_Man.jpg",
     "meaning": "The Hanged Man Reversed Meaning"
   },
-  {'title': "Death – XIII", "meaning": "Death Meaning"},
-  {'title': "Death Reversed – XIII", "meaning": "Death Reversed Meaning"},
-  {'title': "Temperance – XIV", "meaning": "Temperance Meaning"},
   {
-    'title': "Temperance Reversed – XIV",
+    "title": "Death – XIII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Pictorial_Key_to_the_Tarot_13_Death.jpg",
+    "meaning": "Death Meaning"
+  },
+  {
+    "title": "Death Reversed – XIII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Pictorial_Key_to_the_Tarot_13_Death.jpg",
+    "meaning": "Death Reversed Meaning"
+  },
+  {
+    "title": "Temperance – XIV",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/6/6a/Pictorial_Key_to_the_Tarot_14_Temperance.jpg",
+    "meaning": "Temperance Meaning"
+  },
+  {
+    "title": "Temperance Reversed – XIV",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/6/6a/Pictorial_Key_to_the_Tarot_14_Temperance.jpg",
     "meaning": "Temperance Reversed Meaning"
   },
-  {'title': "Devil – XV", "meaning": "Devil Meaning"},
-  {'title': "Devil Reversed – XV", "meaning": "Devil Reversed Meaning"},
-  {'title': "The Tower  – XVI", "meaning": "The Tower Meaning"},
   {
-    'title': "The Tower Reversed – XVI",
+    "title": "Devil – XV",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/1/16/Pictorial_Key_to_the_Tarot_15_The_Devil.jpg",
+    "meaning": "Devil Meaning"
+  },
+  {
+    "title": "Devil Reversed – XV",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/1/16/Pictorial_Key_to_the_Tarot_15_The_Devil.jpg",
+    "meaning": "Devil Reversed Meaning"
+  },
+  {
+    "title": "The Tower  – XVI",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/2/22/Pictorial_Key_to_the_Tarot_16_The_Tower.jpg",
+    "meaning": "The Tower Meaning"
+  },
+  {
+    "title": "The Tower Reversed – XVI",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/2/22/Pictorial_Key_to_the_Tarot_16_The_Tower.jpg",
     "meaning": "The Tower Reversed Meaning"
   },
-  {'title': "The Star – XVII", "meaning": "The Star Meaning"},
-  {'title': "The Star Reversed – XVII", "meaning": "The Star Reversed Meaning"},
-  {'title': "The Moon – XVIII", "meaning": "The Moon Meaning"},
   {
-    'title': "The Moon Reversed – XVIII",
+    "title": "The Star – XVII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/8/83/Pictorial_Key_to_the_Tarot_17_The_Star.jpg",
+    "meaning": "The Star Meaning"
+  },
+  {
+    "title": "The Star Reversed – XVII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/8/83/Pictorial_Key_to_the_Tarot_17_The_Star.jpg",
+    "meaning": "The Star Reversed Meaning"
+  },
+  {
+    "title": "The Moon – XVIII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/9/9f/Pictorial_Key_to_the_Tarot_18_The_Moon.jpg",
+    "meaning": "The Moon Meaning"
+  },
+  {
+    "title": "The Moon Reversed – XVIII",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/9/9f/Pictorial_Key_to_the_Tarot_18_The_Moon.jpg",
     "meaning": "The Moon Reversed Meaning"
   },
-  {'title': "The Sun – XIX", "meaning": "The Sun Meaning"},
-  {'title': "The Sun Reversed – XIX", "meaning": "The Sun Reversed Meaning"},
-  {'title': "Judgement – XX", "meaning": "Judgement Meaning"},
-  {'title': "Judgement Reversed – XX", "meaning": "Judgement Reversed Meaning"},
-  {'title': "The World – XXI", "meaning": "The World Meaning"},
   {
-    'title': "The World Reversed – XXI",
+    "title": "The Sun – XIX",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/8/84/Pictorial_Key_to_the_Tarot_19_The_Sun.jpg",
+    "meaning": "The Sun Meaning"
+  },
+  {
+    "title": "The Sun Reversed – XIX",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/8/84/Pictorial_Key_to_the_Tarot_19_The_Sun.jpg",
+    "meaning": "The Sun Reversed Meaning"
+  },
+  {
+    "title": "Judgement – XX",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pictorial_Key_to_the_Tarot_20_Judgement.jpg",
+    "meaning": "Judgement Meaning"
+  },
+  {
+    "title": "Judgement Reversed – XX",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pictorial_Key_to_the_Tarot_20_Judgement.jpg",
+    "meaning": "Judgement Reversed Meaning"
+  },
+  {
+    "title": "The World – XXI",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/d/df/Pictorial_Key_to_the_Tarot_21_The_World.jpg",
+    "meaning": "The World Meaning"
+  },
+  {
+    "title": "The World Reversed – XXI",
+    "image":
+        "https://upload.wikimedia.org/wikipedia/commons/d/df/Pictorial_Key_to_the_Tarot_21_The_World.jpg",
     "meaning": "The World Reversed Meaning"
   },
 ];
