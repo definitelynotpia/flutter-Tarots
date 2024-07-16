@@ -5,7 +5,7 @@ Map<int, Map> cardstates = {
   0: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -14,7 +14,7 @@ Map<int, Map> cardstates = {
   1: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+   
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -23,7 +23,7 @@ Map<int, Map> cardstates = {
   2: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -32,7 +32,7 @@ Map<int, Map> cardstates = {
   3: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -41,7 +41,7 @@ Map<int, Map> cardstates = {
   4: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -50,7 +50,7 @@ Map<int, Map> cardstates = {
   5: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+  
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -59,7 +59,7 @@ Map<int, Map> cardstates = {
   6: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -68,7 +68,7 @@ Map<int, Map> cardstates = {
   7: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -77,7 +77,7 @@ Map<int, Map> cardstates = {
   8: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -86,7 +86,7 @@ Map<int, Map> cardstates = {
   9: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,
@@ -95,7 +95,7 @@ Map<int, Map> cardstates = {
   10: {
     "isFlipped": false,
     "flipCount": 0,
-    "cardTitle": "Click me!",
+    
     "cardSubtitle": "",
     "cardImage": "",
     "cardColor": null,

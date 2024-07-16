@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 import './tarotcontent.dart';
 import 'cardstates.dart';
+import 'history_page.dart'; // Add this import
 
 void main() {
   runApp(const MainApp());
@@ -75,6 +78,23 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // Save the results locally
+  void _saveResults() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String date = DateTime.now().toString();
+    List<Map<String, dynamic>> cards = _cardStates.values.map((state) {
+      return {
+        "cardTitle": state["cardTitle"],
+        "cardSubtitle": state["cardSubtitle"],
+        "cardImage": state["cardImage"],
+      };
+    }).toList();
+    Map<String, dynamic> result = {"date": date, "cards": cards};
+    List<String>? savedResults = prefs.getStringList('savedResults') ?? [];
+    savedResults.add(jsonEncode(result));
+    prefs.setStringList('savedResults', savedResults);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -103,72 +123,106 @@ class _HomePageState extends State<HomePage> {
             )),
         // Center all children
         body: Center(
-          child: Container(
-            constraints: BoxConstraints(
-              minWidth: MediaQuery.sizeOf(context).width,
-              maxWidth: MediaQuery.sizeOf(context).width,
-            ),
-            child: GridView.builder(
-              physics:
-                  const NeverScrollableScrollPhysics(), // prevent scrolling
-              shrinkWrap: true, // allow GridView to center vertically
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5, // rows
-                childAspectRatio: (250 / 420), // width and height
-              ),
-              itemCount: 5, // how many items to build with itemBuilder
-              itemBuilder: (context, index) =>
-                  // make card clickable
-                  GestureDetector(
-                // flip card on tap
-                onTap: () => _flipCard(index, context),
-                // card container
-                child: Card(
-                  color: _cardStates[index]?["cardColor"],
-                  elevation: 20,
-                  margin: const EdgeInsets.all(12),
-                  // card body
-                  child: Builder(
-                    builder: (context) {
-                      if (_cardStates[index]?["isFlipped"]) {
-                        // show tarot image
-                        return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              // card title
-                              Text(
-                                _cardStates[index]?["cardTitle"],
-                                style: TextStyle(
-                                  color: _cardStates[index]?["cardTitleColor"],
-                                  fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      MediaQuery.sizeOf(context).width / 80,
-                                ),
-                              ),
-                              Image.network(_cardStates[index]?["cardImage"]),
-                              Text(
-                                _cardStates[index]!["flipCount"].toString(),
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize:
-                                      MediaQuery.sizeOf(context).width / 120,
-                                ),
-                              ),
-                            ]);
-                      } else {
-                        // show tarot back design
-                        return const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image(
-                                  image: AssetImage("assets/tarot_back.png")),
-                            ]);
-                      }
-                    },
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.sizeOf(context).width,
+                    maxWidth: MediaQuery.sizeOf(context).width,
+                  ),
+                  child: GridView.builder(
+                    physics:
+                        const NeverScrollableScrollPhysics(), // prevent scrolling
+                    shrinkWrap: true, // allow GridView to center vertically
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5, // rows
+                      childAspectRatio: (250 / 420), // width and height
+                    ),
+                    itemCount: 5, // how many items to build with itemBuilder
+                    itemBuilder: (context, index) =>
+                        // make card clickable
+                        GestureDetector(
+                      // flip card on tap
+                      onTap: () => _flipCard(index, context),
+                      // card container
+                      child: Card(
+                        color: _cardStates[index]?["cardColor"],
+                        elevation: 20,
+                        margin: const EdgeInsets.all(12),
+                        // card body
+                        child: Builder(
+                          builder: (context) {
+                            if (_cardStates[index]?["isFlipped"]) {
+                              // show tarot image
+                              return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    // card title
+                                    Text(
+                                      _cardStates[index]?["cardTitle"],
+                                      style: TextStyle(
+                                        color: _cardStates[index]
+                                            ?["cardTitleColor"],
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            MediaQuery.sizeOf(context).width /
+                                                80,
+                                      ),
+                                    ),
+                                    Image.network(
+                                        _cardStates[index]?["cardImage"]),
+                                    Text(
+                                      _cardStates[index]!["flipCount"]
+                                          .toString(),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize:
+                                            MediaQuery.sizeOf(context).width /
+                                                120,
+                                      ),
+                                    ),
+                                  ]);
+                            } else {
+                              // show tarot back design
+                              return const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Image(
+                                        image: AssetImage(
+                                            "assets/tarot_back.png")),
+                                  ]);
+                            }
+                          },
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: _saveResults,
+                    child: const Text('Save Results'),
+                  ),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HistoryPage(),
+                        ),
+                      );
+                    },
+                    child: const Text('View History'),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
