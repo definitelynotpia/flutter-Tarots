@@ -9,6 +9,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   1: {
     "isFlipped": false,
@@ -18,6 +19,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   2: {
     "isFlipped": false,
@@ -27,6 +29,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   3: {
     "isFlipped": false,
@@ -36,6 +39,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   4: {
     "isFlipped": false,
@@ -45,6 +49,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   5: {
     "isFlipped": false,
@@ -54,6 +59,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   6: {
     "isFlipped": false,
@@ -63,6 +69,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   7: {
     "isFlipped": false,
@@ -72,6 +79,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   8: {
     "isFlipped": false,
@@ -81,6 +89,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   9: {
     "isFlipped": false,
@@ -90,6 +99,7 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
   10: {
     "isFlipped": false,
@@ -99,5 +109,6 @@ Map<int, Map> cardstates = {
     "cardImage": "",
     "cardColor": null,
     "cardTitleColor": null,
+    "cardNumber":-1
   },
 };

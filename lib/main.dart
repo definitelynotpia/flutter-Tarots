@@ -42,13 +42,29 @@ class _HomePageState extends State<HomePage> {
 
   // tarot card randomizer
   void _getCard(index) {
-    int cardnum = Random().nextInt(tarotdeck.length);
+    var cardnum = Random().nextInt(tarotdeck.length);
     if (_cardStates[index]?["flipCount"] == 0) {
+
+      //check for repeats
+      var previousCards = [];
+      for(var i = 0;i<5;i++){
+        if(_cardStates[i]?["flipCount"] > 0){
+          //make a list of all flipped cards
+          if (previousCards.contains(_cardStates[i]?["cardNumber"])==false){ //to avoid repeats
+            previousCards.add(_cardStates[i]?["cardNumber"]);
+          }
+        }
+      }
+
+      while(previousCards.contains((cardnum/2).floor())){ //if there's a match, reroll
+        cardnum = Random().nextInt(tarotdeck.length);
+      }
       // set card title and meaning
       _cardStates[index]?["cardTitle"] = tarotdeck[cardnum]["title"];
       _cardStates[index]?["cardSubtitle"] = tarotdeck[cardnum]["meaning"];
       _cardStates[index]?["cardImage"] = tarotdeck[cardnum]["image"];
-      _cardStates[index]?["isReversed"] = tarotdeck[cardnum]["isReversed"];
+      _cardStates[index]?["isReversed"] = (cardnum%2==0)?false:true;
+      _cardStates[index]?["cardNumber"] = (cardnum/2).floor();
     }
   }
 
