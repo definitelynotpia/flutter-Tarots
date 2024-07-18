@@ -1,16 +1,20 @@
+// import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+  // const HistoryPage({Key? key}) : super(key: key);
+  const HistoryPage({super.key});
 
   @override
-  _HistoryPageState createState() => _HistoryPageState();
+  // _HistoryPageState createState() => _HistoryPageState();
+  State<HistoryPage> createState() => _HistoryPageState();
 }
 
 class _HistoryPageState extends State<HistoryPage> {
   List<Map<String, dynamic>> _savedResults = [];
+  bool errorSaving = false;
 
   @override
   void initState() {
@@ -32,7 +36,8 @@ class _HistoryPageState extends State<HistoryPage> {
       }
     } catch (e) {
       // Handle errors here (e.g., log the error, show error message)
-      print('Error loading saved results: $e');
+      // set error to true and display error message
+      errorSaving = true;
     }
   }
 
@@ -43,12 +48,12 @@ class _HistoryPageState extends State<HistoryPage> {
         title: const Text('History'),
       ),
       body: _savedResults.isEmpty
-          ? Center(
+          ? const Center(
               child: Text('No saved results'),
             )
           : ListView.separated(
               itemCount: _savedResults.length,
-              separatorBuilder: (context, index) => Divider(),
+              separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 Map<String, dynamic> result = _savedResults[index];
                 List<Widget> cardsWidgets = [];
@@ -59,7 +64,8 @@ class _HistoryPageState extends State<HistoryPage> {
 
                   if (result['cards'] != null) {
                     result['cards'].forEach((card) {
-                      if (card['cardTitle'] != null && card['cardSubtitle'] != null) {
+                      if (card['cardTitle'] != null &&
+                          card['cardSubtitle'] != null) {
                         cardsWidgets.add(
                           Text(
                             "${card['cardTitle']}: ${card['cardSubtitle']}",
