@@ -304,48 +304,48 @@ const List tarotdeck = [
     "meaning": "The Moon Reversed Meaning"
   },
   {
-    "title": "The Sun XI",
-    "number": "X",
+    "title": "The Sun",
+    "number": "XIX",
     "isReversed": false,
     "image":
         "https://upload.wikimedia.org/wikipedia/commons/8/84/Pictorial_Key_to_the_Tarot_19_The_Sun.jpg",
     "meaning": "The Sun Meaning"
   },
   {
-    "title": "The Sun Reversed XI",
-    "number": "X",
+    "title": "The Sun Reversed",
+    "number": "XIX",
     "isReversed": false,
     "image":
         "https://upload.wikimedia.org/wikipedia/commons/8/84/Pictorial_Key_to_the_Tarot_19_The_Sun.jpg",
     "meaning": "The Sun Reversed Meaning"
   },
   {
-    "title": "Judgement X",
-    "number": "X",
+    "title": "Judgement",
+    "number": "XX",
     "isReversed": false,
     "image":
         "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pictorial_Key_to_the_Tarot_20_Judgement.jpg",
     "meaning": "Judgement Meaning"
   },
   {
-    "title": "Judgement Reversed X",
-    "number": "X",
+    "title": "Judgement Reversed",
+    "number": "XX",
     "isReversed": true,
     "image":
         "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pictorial_Key_to_the_Tarot_20_Judgement.jpg",
     "meaning": "Judgement Reversed Meaning"
   },
   {
-    "title": "The World X",
-    "number": "XI",
+    "title": "The World",
+    "number": "XXI",
     "isReversed": false,
     "image":
         "https://upload.wikimedia.org/wikipedia/commons/d/df/Pictorial_Key_to_the_Tarot_21_The_World.jpg",
     "meaning": "The World Meaning"
   },
   {
-    "title": "The World Reversed X",
-    "number": "XI",
+    "title": "The World Reversed",
+    "number": "XXI",
     "isReversed": false,
     "image":
         "https://upload.wikimedia.org/wikipedia/commons/d/df/Pictorial_Key_to_the_Tarot_21_The_World.jpg",
